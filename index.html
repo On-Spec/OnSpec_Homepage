@@ -4,45 +4,982 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <title>On-Spec</title>
+    <title>On-Spec | ㈜온스펙</title>
     <style>
+        /* ─── Reset & Base ─────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green: #8DC21F;
+            --green-dark: #6fa018;
+            --dark: #222222;
+            --gray: #555555;
+            --light-gray: #f4f4f4;
+            --border: #e0e0e0;
+            --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
         }
-        header {
-            background: #222;
-            color: white;
+
+        /* ─── Navigation ────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(6px);
+            border-bottom: 2px solid var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            height: 64px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+        .nav-logo-text span { color: var(--green); }
+        .nav-logo-sub {
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--green); }
+
+        /* ─── Hero ──────────────────────────────────────────────── */
+        .hero {
+            margin-top: 64px;
+            min-height: calc(100vh - 64px);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4d0 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 10%;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 500px; height: 500px;
+            background: var(--green);
+            opacity: 0.08;
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; right: 10%;
+            width: 320px; height: 320px;
+            background: var(--green);
+            opacity: 0.06;
+            border-radius: 50%;
+        }
+        .hero-content { max-width: 520px; position: relative; z-index: 1; }
+        .hero-tag {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        .hero-title {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.15;
+            color: var(--dark);
+            margin-bottom: 24px;
+        }
+        .hero-title .accent { color: var(--green); }
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--gray);
+            margin-bottom: 36px;
+            line-height: 1.8;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: background .25s, transform .15s;
+            box-shadow: 0 4px 18px rgba(141,194,31,.35);
+        }
+        .hero-cta:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+        .hero-cards {
+            position: absolute;
+            right: 6%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: grid;
+            grid-template-columns: 170px 170px;
+            grid-template-rows: 170px 170px;
+            gap: 14px;
+            z-index: 1;
+        }
+        .hero-card {
+            border-radius: 22px;
+            overflow: hidden;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 28px rgba(0,0,0,.18);
+        }
+        .hero-card:nth-child(1) { transform: rotate(-6deg) translateY(-8px); }
+        .hero-card:nth-child(2) { transform: rotate(4deg) translateY(8px); background: #0d1b0d; }
+        .hero-card:nth-child(3) { transform: rotate(3deg) translateY(-4px); background: #0d1b1b; }
+        .hero-card:nth-child(4) { transform: rotate(-4deg) translateY(6px); }
+        .hero-card-icon {
+            font-size: 3.2rem;
+            line-height: 1;
+        }
+        .hero-card-label {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            color: var(--green);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        .hero-card { position: relative; }
+
+        /* ─── Section Commons ────────────────────────────────────── */
+        .section {
+            padding: 96px 10%;
+        }
+        .section-alt { background: var(--light-gray); }
+        .section-header { margin-bottom: 56px; }
+        .section-tag {
+            display: inline-block;
+            color: var(--green);
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        .section-line {
+            width: 48px;
+            height: 4px;
+            background: var(--green);
+            border-radius: 2px;
+            margin-top: 14px;
+        }
+        .section-desc {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 16px;
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        /* ─── About ─────────────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+        .company-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .company-table th, .company-table td {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+        .company-table th {
+            background: var(--light-gray);
+            font-weight: 700;
+            color: var(--dark);
+            width: 30%;
+            white-space: nowrap;
+        }
+        .company-table td { color: var(--gray); }
+        .company-table td strong { color: var(--green); }
+
+        .value-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .value-card {
+            background: var(--white);
+            border: 2px solid var(--green);
+            border-radius: 14px;
             padding: 20px;
             text-align: center;
         }
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
+        .value-card-icon { font-size: 2rem; margin-bottom: 8px; }
+        .value-card h4 {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        /* ─── Org Chart ─────────────────────────────────────────── */
+        .org-chart {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+        }
+        .org-chart h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 28px;
+            text-align: center;
+        }
+        .org-ceo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+        .org-box {
+            background: var(--green);
+            color: var(--white);
+            font-size: 0.88rem;
+            font-weight: 800;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-align: center;
+        }
+        .org-connector {
+            display: flex;
+            justify-content: center;
+            height: 28px;
+            position: relative;
+        }
+        .org-connector::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border);
+        }
+        .org-branches {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            position: relative;
+        }
+        .org-branches::before {
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: calc(12.5%);
+            right: calc(12.5%);
+            height: 2px;
+            background: var(--border);
+        }
+        .org-branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .org-branch::before {
+            content: '';
+            width: 2px;
+            height: 14px;
+            background: var(--border);
+        }
+        .org-dept {
+            background: var(--white);
+            border: 2px solid var(--border);
             border-radius: 10px;
-        }
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        footer {
+            padding: 10px 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
             text-align: center;
-            padding: 20px;
-            color: #888;
+            color: var(--dark);
+            width: 100%;
+        }
+
+        /* ─── Projects ──────────────────────────────────────────── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+        .project-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform .25s, box-shadow .25s;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,.12);
+        }
+        .project-card-header {
+            background: var(--green);
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 800;
+            padding: 14px 18px;
+            text-align: center;
+        }
+        .project-card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        .project-card-body { padding: 18px; }
+        .project-card-body ul {
+            list-style: none;
+            padding: 0;
+        }
+        .project-card-body ul li {
+            font-size: 0.8rem;
+            color: var(--gray);
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.5;
+        }
+        .project-card-body ul li:last-child { border-bottom: none; }
+        .project-card-body ul li::before {
+            content: '• ';
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* ─── Core Technologies ──────────────────────────────────── */
+        .tech-process {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tech-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 140px;
+        }
+        .tech-step-icon {
+            width: 80px; height: 80px;
+            background: #e8f4d0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            border: 3px solid var(--green);
+        }
+        .tech-step-name {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+        }
+        .tech-step-items {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .tech-step-items li {
+            font-size: 0.73rem;
+            color: var(--green-dark);
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        .tech-arrow {
+            font-size: 1.8rem;
+            color: var(--green);
+            margin: 0 6px;
+            padding-bottom: 46px;
+        }
+
+        .tech-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .tech-highlight-block h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+        .tech-highlight-block h3::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 22px;
+            background: var(--green);
+            border-radius: 3px;
+        }
+        .tech-highlight-block ul {
+            list-style: none;
+            padding: 0;
+        }
+        .tech-highlight-block ul li {
+            font-size: 0.88rem;
+            color: var(--gray);
+            padding: 7px 0;
+            border-bottom: 1px dashed var(--border);
+            line-height: 1.6;
+        }
+        .tech-highlight-block ul li:last-child { border-bottom: none; }
+        .tech-highlight-block ul li::before {
+            content: '→ ';
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* ─── Clients ───────────────────────────────────────────── */
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .client-badge {
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 28px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            min-width: 140px;
+            transition: border-color .2s, transform .2s;
+        }
+        .client-badge:hover {
+            border-color: var(--green);
+            transform: translateY(-3px);
+        }
+        .client-badge .client-sub {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        /* ─── Contact / Footer ──────────────────────────────────── */
+        .contact-section {
+            background: var(--dark);
+            color: var(--white);
+            padding: 72px 10%;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .contact-info h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+        .contact-info h2 span { color: var(--green); }
+        .contact-info p {
+            color: #aaa;
+            margin-bottom: 28px;
+            font-size: 0.95rem;
+        }
+        .contact-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .contact-row {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .contact-row-icon {
+            width: 36px; height: 36px;
+            background: var(--green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .contact-row-text strong {
+            display: block;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 2px;
+        }
+        .contact-row-text span {
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+        .contact-cta {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid #333;
+        }
+        .contact-cta h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .contact-cta p { color: #aaa; font-size: 0.9rem; margin-bottom: 24px; }
+        .contact-cta a {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: background .2s;
+        }
+        .contact-cta a:hover { background: var(--green-dark); }
+
+        footer {
+            background: #111;
+            color: #555;
+            text-align: center;
+            padding: 22px;
+            font-size: 0.82rem;
+        }
+        footer span { color: var(--green); }
+
+        /* ─── Responsive ─────────────────────────────────────────── */
+        @media (max-width: 1100px) {
+            .hero-cards { display: none; }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .section { padding: 64px 5%; }
+            .hero { padding: 60px 5%; }
+            .about-grid { grid-template-columns: 1fr; }
+            .tech-highlights { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .org-branches { grid-template-columns: repeat(2, 1fr); }
+            .org-branches::before { display: none; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>On-Spec</h1>
-</header>
+<!-- ── Navigation ──────────────────────────────────────────── -->
+<nav>
+    <a href="#" class="nav-logo">
+        <div>
+            <div class="nav-logo-text">On-<span>Spec</span><sup style="font-size:.55rem;color:var(--green)">™</sup></div>
+            <div class="nav-logo-sub">㈜온스펙</div>
+        </div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#about">회사 소개</a></li>
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#technologies">핵심 기술</a></li>
+        <li><a href="#clients">고객사</a></li>
+        <li><a href="#contact">문의</a></li>
+    </ul>
+</nav>
 
+<!-- ── Hero ────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-tag">㈜온스펙 회사소개</div>
+        <h1 class="hero-title">
+            Total <span class="accent">Vision</span><br>
+            검사 솔루션<br>
+            전문기업
+        </h1>
+        <p class="hero-desc">
+            2006년부터 쌓아온 20년간의 Vision 검사 노하우로<br>
+            광학설계, S/W 개발, 딥러닝을 결합한<br>
+            최고의 검사 솔루션을 제공합니다.
+        </p>
+        <a href="#about" class="hero-cta">회사 소개 보기 →</a>
+    </div>
+
+    <div class="hero-cards">
+        <div class="hero-card">
+            <div class="hero-card-icon">🔋</div>
+            <div class="hero-card-label">이차전지</div>
+        </div>
+        <div class="hero-card">
+            <div class="hero-card-icon">🤖</div>
+            <div class="hero-card-label">AI</div>
+        </div>
+        <div class="hero-card">
+            <div class="hero-card-icon">💡</div>
+            <div class="hero-card-label">VISION</div>
+        </div>
+        <div class="hero-card">
+            <div class="hero-card-icon">🔬</div>
+            <div class="hero-card-label">INSPECT</div>
+        </div>
+    </div>
+</section>
+
+<!-- ── About ────────────────────────────────────────────────── -->
+<section class="section" id="about">
+    <div class="section-header">
+        <div class="section-tag">ON-SPEC</div>
+        <h2 class="section-title">회사 소개</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">
+            ㈜온스펙은 2006년부터 20년간 Vision 검사 분야에서 경험을 쌓아온 전문가들이 모여 설립한 기업으로,
+            광학설계, S/W개발, 딥러닝을 이용한 Total 검사 솔루션 제공을 통해 고객의 가치에 기여하고자 합니다.
+        </p>
+    </div>
+
+    <div class="about-grid">
+        <!-- 기업 정보 테이블 -->
+        <div>
+            <table class="company-table">
+                <tr>
+                    <th>업체명</th>
+                    <td>㈜온스펙</td>
+                </tr>
+                <tr>
+                    <th>대표이사</th>
+                    <td>이관석</td>
+                </tr>
+                <tr>
+                    <th>주소</th>
+                    <td>경기도 화성시 봉담읍 동화길 51, 6층 669호</td>
+                </tr>
+                <tr>
+                    <th>설립일</th>
+                    <td>2026년 03월</td>
+                </tr>
+                <tr>
+                    <th>사업 분야</th>
+                    <td>
+                        <strong>비전 검사 시스템 개발</strong><br>
+                        이차전지, 반도체 회로 기판,<br>카메라모듈, Display 등
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 가치 카드 + 조직도 -->
+        <div>
+            <div class="value-cards">
+                <div class="value-card">
+                    <div class="value-card-icon">👥</div>
+                    <h4>전문 인력 중심<br>조직 구성</h4>
+                </div>
+                <div class="value-card">
+                    <div class="value-card-icon">🎯</div>
+                    <h4>고객 맞춤형<br>검사 솔루션 제공</h4>
+                </div>
+            </div>
+
+            <div class="org-chart">
+                <h3>조직도</h3>
+                <div class="org-ceo">
+                    <div class="org-box">대표이사</div>
+                </div>
+                <div class="org-connector"></div>
+                <div class="org-branches">
+                    <div class="org-branch">
+                        <div class="org-dept">S/W<br>개발팀</div>
+                    </div>
+                    <div class="org-branch">
+                        <div class="org-dept">시스템<br>설계팀</div>
+                    </div>
+                    <div class="org-branch">
+                        <div class="org-dept">기술<br>지원팀</div>
+                    </div>
+                    <div class="org-branch">
+                        <div class="org-dept">영업팀</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Projects ──────────────────────────────────────────────── -->
+<section class="section section-alt" id="projects">
+    <div class="section-header">
+        <div class="section-tag">PROJECTS</div>
+        <h2 class="section-title">주요 프로젝트</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">다양한 산업 분야에 최적화된 비전 검사 솔루션을 제공합니다.</p>
+    </div>
+
+    <div class="projects-grid">
+        <!-- 이차전지 -->
+        <div class="project-card">
+            <div class="project-card-header">🔋 이차전지</div>
+            <div class="project-card-img">🔋</div>
+            <div class="project-card-body">
+                <ul>
+                    <li>전극공정 Coater, Roll-Press, Slitter<br>표면 검사 Vision / 치수 측정 Vision</li>
+                    <li>조립 공정 L&amp;S 라인 비전 시스템</li>
+                    <li>조립 공정 PKG 라인 비전 시스템</li>
+                    <li>모듈 공정 Bur-bar 외 비전 시스템</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PCB, FPCB -->
+        <div class="project-card">
+            <div class="project-card-header">🖥️ PCB, FPCB</div>
+            <div class="project-card-img">🖥️</div>
+            <div class="project-card-body">
+                <ul>
+                    <li>PCB, FPCB 인쇄 회로 기판<br>패턴 검사기(AOI)</li>
+                    <li>PCB, FPCB 인쇄 회로 기판<br>외관 검사기(AVI)</li>
+                    <li>FPCB Roll to Roll 패턴 검사기<br>(RTR AOI &amp; VRS)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Camera Module -->
+        <div class="project-card">
+            <div class="project-card-header">📷 Camera Module</div>
+            <div class="project-card-img">📷</div>
+            <div class="project-card-body">
+                <ul>
+                    <li>Camera Module 외관검사기</li>
+                    <li>Camera Module 6면 외관검사기</li>
+                    <li>Laser Module 외관검사기</li>
+                    <li>Lens 외관 검사기</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Display -->
+        <div class="project-card">
+            <div class="project-card-header">🖥 Display</div>
+            <div class="project-card-img">🖥</div>
+            <div class="project-card-body">
+                <ul>
+                    <li>COF Reel to Reel AFVI<br>(최종 외관 검사기)</li>
+                    <li>S-IC Reel to Reel AFVI<br>(최종 외관 검사기)</li>
+                    <li>Touch Screen Panel AOI</li>
+                    <li>투명 ITO Pattern AOI</li>
+                    <li>OLED FMM AOI/AVI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Core Technologies ────────────────────────────────────── -->
+<section class="section" id="technologies">
+    <div class="section-header">
+        <div class="section-tag">CORE TECHNOLOGIES</div>
+        <h2 class="section-title">핵심 기술</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">이차전지 전 공정에 걸친 비전 검사 시스템 개발 실적을 보유하고 있습니다.</p>
+    </div>
+
+    <!-- 공정 흐름 -->
+    <div style="margin-bottom:16px;">
+        <p style="font-size:0.95rem;font-weight:800;color:var(--dark);margin-bottom:24px;">
+            ■ 1) 이차전지 — 제조 공정별 개발 아이템
+        </p>
+    </div>
+    <div class="tech-process">
+        <div class="tech-step">
+            <div class="tech-step-icon">🌀</div>
+            <div class="tech-step-name">전극<br>(코터/롤프레스/슬리터)</div>
+            <ul class="tech-step-items">
+                <li>표면 검사 Vision</li>
+                <li>치수 측정 Vision</li>
+            </ul>
+        </div>
+        <div class="tech-arrow">›</div>
+        <div class="tech-step">
+            <div class="tech-step-icon">🤖</div>
+            <div class="tech-step-name">조립</div>
+            <ul class="tech-step-items">
+                <li>L&amp;S 라인 비전 시스템</li>
+                <li>PKG 라인 비전 시스템</li>
+            </ul>
+        </div>
+        <div class="tech-arrow">›</div>
+        <div class="tech-step">
+            <div class="tech-step-icon">⚡</div>
+            <div class="tech-step-name">화성</div>
+            <ul class="tech-step-items">
+                <li>&nbsp;</li>
+            </ul>
+        </div>
+        <div class="tech-arrow">›</div>
+        <div class="tech-step">
+            <div class="tech-step-icon">🔋</div>
+            <div class="tech-step-name">모듈/팩</div>
+            <ul class="tech-step-items">
+                <li>Bur-bar 외 비전 시스템</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tech-highlights">
+        <div class="tech-highlight-block">
+            <h3>핵심 기술</h3>
+            <ul>
+                <li>2차전지 순공정 검사 Vision 시스템 개발 실적 보유</li>
+                <li>Multi-Channel 조명 적용으로 전극 표면 불량 및 치수 측정 정합성 향상</li>
+                <li>전극공정 코터 Wet 절연부 검사 시인성 개선을 위한 조명 시스템 개발</li>
+                <li>Auto-Threshold 알고리즘 적용으로 우수한 코팅부 Edge 불량 검출력 향상</li>
+            </ul>
+        </div>
+        <div class="tech-highlight-block">
+            <h3>기술 역량</h3>
+            <ul>
+                <li>광학설계 — 최적 렌즈·조명 시스템 설계</li>
+                <li>S/W 개발 — 딥러닝 기반 불량 검출 알고리즘</li>
+                <li>Total 솔루션 — 하드웨어 + 소프트웨어 통합 제공</li>
+                <li>20년 이상의 Vision 검사 현장 경험</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ── Clients ──────────────────────────────────────────────── -->
+<section class="section section-alt" id="clients">
+    <div class="section-header">
+        <div class="section-tag">INDUSTRY EXPERIENCE</div>
+        <h2 class="section-title">주요 고객사</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">국내외 주요 이차전지·반도체·디스플레이 기업과 협력하고 있습니다.</p>
+    </div>
+
+    <div class="clients-grid">
+        <div class="client-badge">
+            LG에너지솔루션
+            <span class="client-sub">오창 / 중국 / 폴란드 / 미국</span>
+        </div>
+        <div class="client-badge">
+            Ultium Cells
+            <span class="client-sub">LG-GM 합작법인</span>
+        </div>
+        <div class="client-badge">
+            HLBMA LCC
+            <span class="client-sub">LG-현대 합작법인</span>
+        </div>
+        <div class="client-badge">
+            LG-HONDA 합작법인
+            <span class="client-sub">L&nbsp;H</span>
+        </div>
+        <div class="client-badge">
+            NEXTSTAR ENERGY
+            <span class="client-sub">LG-스텔란티스 합작법인</span>
+        </div>
+    </div>
+</section>
+
+<!-- ── Contact ──────────────────────────────────────────────── -->
+<section class="contact-section" id="contact">
+    <div class="contact-grid">
+        <div class="contact-info">
+            <h2>Contact <span>On-Spec</span></h2>
+            <p>비전 검사 솔루션에 관해 궁금하신 점을 문의해 주세요.</p>
+            <div class="contact-detail">
+                <div class="contact-row">
+                    <div class="contact-row-icon">📍</div>
+                    <div class="contact-row-text">
+                        <strong>주소</strong>
+                        <span>경기도 화성시 봉담읍 동화길 51, 6층 669호</span>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-row-icon">👤</div>
+                    <div class="contact-row-text">
+                        <strong>대표이사</strong>
+                        <span>이관석</span>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-row-icon">🏢</div>
+                    <div class="contact-row-text">
+                        <strong>설립일</strong>
+                        <span>2026년 03월</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-cta">
+            <h3>비전 검사 솔루션 문의</h3>
+            <p>이차전지, PCB/FPCB, 카메라모듈, 디스플레이 등 다양한 분야의 맞춤형 검사 시스템을 제안해 드립니다.</p>
+            <a href="mailto:info@on-spec.co.kr">이메일 문의하기</a>
+        </div>
+    </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────────────── -->
 <footer>
-    © 2026 On-Spec. All rights reserved.
+    © 2026 <span>㈜온스펙 (On-Spec)</span>. All rights reserved.
+    &nbsp;|&nbsp; 경기도 화성시 봉담읍 동화길 51, 6층 669호
 </footer>
 
 </body>

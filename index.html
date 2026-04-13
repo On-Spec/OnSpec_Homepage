@@ -3,46 +3,1289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>On-Spec</title>
+    <title>On-Spec | IT 전문 솔루션</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ─── Reset & Base ─────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --green:       #6fa84e;
+            --green-dark:  #558338;
+            --green-light: #e8f2e2;
+            --charcoal:    #3b3b3b;
+            --charcoal-2:  #555;
+            --border:      #e0e0e0;
+            --bg:          #f7f8f6;
+            --white:       #ffffff;
+            --nav-h:       72px;
+            --radius:      6px;
+            --shadow:      0 4px 24px rgba(0,0,0,.08);
+            --transition:  .25s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            color: var(--charcoal);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        ul { list-style: none; }
+
+        /* ─── Utility ───────────────────────────────────── */
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--charcoal);
+        }
+        .section-sub {
+            margin-top: 14px;
+            font-size: 1rem;
+            color: var(--charcoal-2);
+            max-width: 560px;
+        }
+
+        /* ─── Navigation ────────────────────────────────── */
+        #nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--nav-h);
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid transparent;
+            z-index: 1000;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        #nav.scrolled {
+            border-color: var(--border);
+            box-shadow: 0 2px 16px rgba(0,0,0,.06);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Logo */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            letter-spacing: -.02em;
+        }
+        .logo-icon {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            width: 26px;
+            height: 26px;
+        }
+        .logo-icon span {
+            background: var(--green);
+            border-radius: 2px;
+            transition: transform var(--transition);
+        }
+        .logo-icon span:last-child { background: var(--green-dark); }
+        .nav-logo:hover .logo-icon span { transform: scale(.85); }
+        .logo-text em { font-style: normal; color: var(--green); }
+
+        /* Nav links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+        .nav-links a {
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--charcoal-2);
+            position: relative;
+            padding-bottom: 4px;
+            transition: color var(--transition);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--green);
+            transition: width var(--transition);
+        }
+        .nav-links a:hover { color: var(--charcoal); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--green);
+            color: var(--white) !important;
+            padding: 10px 22px;
+            border-radius: var(--radius);
+            font-weight: 600 !important;
+            transition: background var(--transition) !important;
+        }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--green-dark) !important; }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--charcoal);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Mobile nav */
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: var(--nav-h); left: 0; right: 0;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            padding: 24px 32px;
+            z-index: 999;
+            box-shadow: 0 8px 24px rgba(0,0,0,.08);
+        }
+        .nav-mobile.open { display: block; }
+        .nav-mobile a {
+            display: block;
+            padding: 12px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+            color: var(--charcoal-2);
+        }
+        .nav-mobile a:last-child { border-bottom: none; }
+
+        /* ─── Hero ──────────────────────────────────────── */
+        #hero {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--charcoal);
+            padding-top: var(--nav-h);
+        }
+
+        /* Animated geometric background */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(111,168,78,.18) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -10%; left: -5%;
+            width: 40vw; height: 40vw;
+            background: radial-gradient(circle, rgba(111,168,78,.10) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
             text-align: center;
+            color: var(--white);
+            padding: 60px 32px;
         }
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 24px;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: var(--green);
+            opacity: .6;
+        }
+        .hero-title {
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -.03em;
+            margin-bottom: 24px;
+        }
+        .hero-title .accent {
+            color: var(--green);
+            position: relative;
+        }
+        .hero-desc {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 300;
+            color: rgba(255,255,255,.7);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            font-size: .95rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--green);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(111,168,78,.35);
+        }
+        .btn-outline {
+            border: 1.5px solid rgba(255,255,255,.3);
+            color: var(--white);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,.08);
+            transform: translateY(-2px);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,.4);
+            font-size: .75rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+            animation: scrollAnim 1.8s ease-in-out infinite;
+        }
+        @keyframes scrollAnim {
+            0%,100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(.5); opacity: .4; }
+        }
+
+        /* ─── Stats Bar ─────────────────────────────────── */
+        #stats {
+            background: var(--green);
+            padding: 40px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 16px 24px;
+            border-right: 1px solid rgba(255,255,255,.25);
+            color: var(--white);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -.03em;
+        }
+        .stat-num span { font-size: .6em; font-weight: 400; }
+        .stat-label {
+            margin-top: 6px;
+            font-size: .85rem;
+            opacity: .85;
+            font-weight: 300;
+        }
+
+        /* ─── Services ──────────────────────────────────── */
+        #services {
+            padding: 110px 0;
+            background: var(--bg);
+        }
+        .section-header {
+            margin-bottom: 64px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 32px;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--green);
+            transition: height .4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+            border-color: transparent;
+        }
+        .service-card:hover::before { height: 100%; }
+        .service-icon {
+            width: 52px; height: 52px;
+            background: var(--green-light);
             border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
         }
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+        .service-icon svg {
+            width: 26px; height: 26px;
+            stroke: var(--green-dark);
+            fill: none;
+            stroke-width: 1.8;
         }
-        footer {
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            font-size: .9rem;
+            color: var(--charcoal-2);
+            line-height: 1.75;
+        }
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--green);
+            transition: gap var(--transition);
+        }
+        .service-link:hover { gap: 10px; }
+
+        /* ─── About / Values ────────────────────────────── */
+        #about {
+            padding: 110px 0;
+            background: var(--white);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-visual {
+            position: relative;
+        }
+        .about-img-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #2a2a2a 0%, #3b3b3b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Decorative SVG illustration */
+        .about-decoration {
+            position: absolute;
+            bottom: -28px; right: -28px;
+            width: 140px; height: 140px;
+            background: var(--green-light);
+            border-radius: 16px;
+            z-index: -1;
+        }
+        .about-decoration-2 {
+            position: absolute;
+            top: -20px; left: -20px;
+            width: 80px; height: 80px;
+            border: 3px solid var(--green);
+            border-radius: 50%;
+            opacity: .2;
+        }
+        .about-text .section-sub {
+            max-width: 100%;
+            margin-bottom: 32px;
+        }
+        .values-list {
+            display: grid;
+            gap: 16px;
+        }
+        .value-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .value-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+        .value-item strong {
+            display: block;
+            font-size: .95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .value-item p {
+            font-size: .875rem;
+            color: var(--charcoal-2);
+        }
+
+        /* ─── Process ───────────────────────────────────── */
+        #process {
+            padding: 110px 0;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        #process .section-title { color: var(--white); }
+        #process .section-sub { color: rgba(255,255,255,.6); }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            margin-top: 64px;
+            position: relative;
+        }
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 36px; left: 10%;
+            width: 80%;
+            height: 1px;
+            background: rgba(255,255,255,.12);
+        }
+        .process-step {
             text-align: center;
-            padding: 20px;
-            color: #888;
+            padding: 0 16px;
+            position: relative;
+        }
+        .step-num {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--charcoal);
+            position: relative;
+            z-index: 1;
+            transition: all var(--transition);
+        }
+        .process-step:hover .step-num {
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .process-step h4 {
+            font-size: .95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .process-step p {
+            font-size: .8rem;
+            color: rgba(255,255,255,.5);
+            line-height: 1.6;
+        }
+
+        /* ─── News ──────────────────────────────────────── */
+        #news {
+            padding: 110px 0;
+            background: var(--bg);
+        }
+        .news-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .news-more {
+            font-size: .875rem;
+            font-weight: 600;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap var(--transition);
+        }
+        .news-more:hover { gap: 10px; }
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr;
+            gap: 24px;
+        }
+        .news-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: transparent;
+        }
+        .news-thumb {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+        }
+        .news-thumb-inner {
+            width: 100%; height: 100%;
+            transition: transform .4s ease;
+        }
+        .news-card:hover .news-thumb-inner { transform: scale(1.05); }
+
+        /* Placeholder colors for news thumbnails */
+        .thumb-1 { background: linear-gradient(135deg, #3b3b3b 0%, #555 100%); }
+        .thumb-2 { background: linear-gradient(135deg, #3d5a30 0%, #6fa84e 100%); }
+        .thumb-3 { background: linear-gradient(135deg, #2a3a55 0%, #4a6a95 100%); }
+
+        .news-thumb-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .thumb-icon {
+            width: 48px; height: 48px;
+            opacity: .3;
+        }
+
+        .news-body {
+            padding: 24px;
+        }
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .news-tag {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--green-dark);
+            background: var(--green-light);
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+        .news-date {
+            font-size: .78rem;
+            color: #999;
+        }
+        .news-card h3 {
+            font-size: .975rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--charcoal);
+            transition: color var(--transition);
+        }
+        .news-card:hover h3 { color: var(--green-dark); }
+        .news-card p {
+            margin-top: 8px;
+            font-size: .85rem;
+            color: var(--charcoal-2);
+            line-height: 1.65;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* ─── CTA Banner ────────────────────────────────── */
+        #cta-banner {
+            background: var(--green);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .cta-banner-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+        .cta-banner-sub {
+            color: rgba(255,255,255,.8);
+            font-size: 1.05rem;
+            margin-bottom: 36px;
+        }
+        .btn-white {
+            background: var(--white);
+            color: var(--green-dark);
+        }
+        .btn-white:hover {
+            background: rgba(255,255,255,.9);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.15);
+        }
+
+        /* ─── Footer ────────────────────────────────────── */
+        footer {
+            background: #222;
+            color: rgba(255,255,255,.6);
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            padding: 72px 0 48px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .footer-brand .nav-logo {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+        .footer-brand p {
+            font-size: .875rem;
+            line-height: 1.75;
+            max-width: 280px;
+        }
+        .footer-col h4 {
+            color: var(--white);
+            font-size: .875rem;
+            font-weight: 600;
+            letter-spacing: .05em;
+            margin-bottom: 20px;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col ul li a {
+            font-size: .85rem;
+            color: rgba(255,255,255,.5);
+            transition: color var(--transition);
+        }
+        .footer-col ul li a:hover { color: var(--green); }
+        .footer-contact-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: .85rem;
+        }
+        .footer-contact-item svg {
+            width: 16px; height: 16px;
+            stroke: var(--green);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: .8rem;
+        }
+        .footer-bottom a {
+            color: rgba(255,255,255,.4);
+            transition: color var(--transition);
+        }
+        .footer-bottom a:hover { color: var(--green); }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ─── Responsive ────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .process-steps { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+            .process-steps::before { display: none; }
+            .news-grid { grid-template-columns: 1fr 1fr; }
+            .news-grid .news-card:first-child { grid-column: 1 / -1; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --nav-h: 60px; }
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            .services-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 48px; }
+            .about-visual { display: none; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-item:nth-child(2) { border-right: none; }
+            .news-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 20px; }
+            .process-steps { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .hero-btns { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>On-Spec</h1>
-</header>
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<nav id="nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <div class="logo-icon">
+                    <span></span><span></span>
+                    <span></span><span></span>
+                </div>
+                <span class="logo-text">On-<em>Spec</em></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">서비스</a></li>
+                <li><a href="#about">회사소개</a></li>
+                <li><a href="#process">프로세스</a></li>
+                <li><a href="#news">뉴스</a></li>
+                <li><a href="#cta-banner" class="nav-cta">문의하기</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
 
+<!-- Mobile nav -->
+<div class="nav-mobile" id="navMobile">
+    <a href="#services">서비스</a>
+    <a href="#about">회사소개</a>
+    <a href="#process">프로세스</a>
+    <a href="#news">뉴스</a>
+    <a href="#cta-banner">문의하기</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero">
+    <div class="hero-bg">
+        <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-eyebrow">IT Solutions &amp; Consulting</div>
+        <h1 class="hero-title">
+            비즈니스의 미래를<br>
+            <span class="accent">On-Spec</span>으로 설계합니다
+        </h1>
+        <p class="hero-desc">
+            최신 기술과 전문 노하우를 바탕으로<br>
+            고객의 디지털 전환을 함께 이끌어갑니다.
+        </p>
+        <div class="hero-btns">
+            <a href="#services" class="btn btn-primary">
+                서비스 알아보기
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#about" class="btn btn-outline">회사 소개</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STATS
+══════════════════════════════════════════ -->
+<section id="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-num">15<span>+</span></div>
+                <div class="stat-label">년간 업력</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">300<span>+</span></div>
+                <div class="stat-label">완료 프로젝트</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">98<span>%</span></div>
+                <div class="stat-label">고객 만족도</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">50<span>+</span></div>
+                <div class="stat-label">전문 인력</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════ -->
+<section id="services">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Our Services</span>
+            <h2 class="section-title">전문화된 IT 솔루션</h2>
+            <p class="section-sub">산업별 맞춤 기술 솔루션으로 귀사의 경쟁력을 높이고 운영 효율을 극대화합니다.</p>
+        </div>
+        <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <h3>시스템 통합 (SI)</h3>
+                <p>기업 환경에 최적화된 시스템 설계부터 구축, 운영까지 전 주기를 책임집니다.</p>
+                <a href="#" class="service-link">
+                    자세히 보기
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <!-- Card 2 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4 4 0 003 15z"/></svg>
+                </div>
+                <h3>클라우드 전환</h3>
+                <p>AWS, Azure, GCP 기반의 클라우드 마이그레이션 및 인프라 최적화를 지원합니다.</p>
+                <a href="#" class="service-link">
+                    자세히 보기
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <!-- Card 3 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </div>
+                <h3>소프트웨어 개발</h3>
+                <p>웹·모바일 애플리케이션부터 ERP, MES까지 고객 맞춤형 소프트웨어를 개발합니다.</p>
+                <a href="#" class="service-link">
+                    자세히 보기
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <!-- Card 4 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>IT 보안 컨설팅</h3>
+                <p>정보보안 진단, 취약점 분석, 보안 정책 수립으로 안전한 IT 환경을 구성합니다.</p>
+                <a href="#" class="service-link">
+                    자세히 보기
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <!-- Card 5 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3>데이터 분석 & AI</h3>
+                <p>빅데이터 플랫폼 구축과 머신러닝 모델 개발로 비즈니스 인사이트를 도출합니다.</p>
+                <a href="#" class="service-link">
+                    자세히 보기
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <!-- Card 6 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                </div>
+                <h3>IT 인프라 관리</h3>
+                <p>24/7 모니터링과 원격 운영을 통해 안정적인 IT 인프라 운영을 보장합니다.</p>
+                <a href="#" class="service-link">
+                    자세히 보기
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════ -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-visual">
+                <div class="about-img-wrap">
+                    <!-- Decorative SVG instead of placeholder image -->
+                    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:.15">
+                        <rect x="20" y="20" width="60" height="60" rx="8" stroke="white" stroke-width="2"/>
+                        <rect x="120" y="20" width="60" height="60" rx="8" fill="white" fill-opacity=".1" stroke="white" stroke-width="2"/>
+                        <rect x="20" y="120" width="60" height="60" rx="8" fill="white" fill-opacity=".1" stroke="white" stroke-width="2"/>
+                        <rect x="120" y="120" width="60" height="60" rx="8" stroke="white" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="20" stroke="#6fa84e" stroke-width="2"/>
+                        <path d="M60 100h80M100 60v80" stroke="#6fa84e" stroke-width="1.5" opacity=".5"/>
+                    </svg>
+                </div>
+                <div class="about-decoration"></div>
+                <div class="about-decoration-2"></div>
+            </div>
+            <div class="about-text">
+                <span class="section-label">About Us</span>
+                <h2 class="section-title">기술로 연결하고<br>혁신으로 성장합니다</h2>
+                <p class="section-sub">
+                    On-Spec은 2010년 설립 이래 국내 주요 기업과 공공기관의 IT 혁신을 선도해 왔습니다. 
+                    검증된 기술력과 풍부한 프로젝트 경험을 바탕으로 고객의 비즈니스 목표 달성을 지원합니다.
+                </p>
+                <div class="values-list">
+                    <div class="value-item">
+                        <div class="value-dot"></div>
+                        <div>
+                            <strong>기술 전문성</strong>
+                            <p>각 분야 전문가로 구성된 팀이 최적의 기술 솔루션을 제공합니다.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-dot"></div>
+                        <div>
+                            <strong>신뢰와 파트너십</strong>
+                            <p>장기적인 파트너 관계를 통해 고객과 함께 지속 성장합니다.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-dot"></div>
+                        <div>
+                            <strong>혁신적 사고</strong>
+                            <p>끊임없는 R&amp;D로 새로운 기술 트렌드를 선제적으로 반영합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROCESS
+══════════════════════════════════════════ -->
+<section id="process">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">How We Work</span>
+            <h2 class="section-title">체계적인 프로젝트 진행</h2>
+            <p class="section-sub">검증된 방법론으로 프로젝트의 성공을 보장합니다.</p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-num">01</div>
+                <h4>요구사항 분석</h4>
+                <p>비즈니스 목표와 기술 요건을 심층 분석합니다</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">02</div>
+                <h4>솔루션 설계</h4>
+                <p>최적의 아키텍처와 기술 스택을 설계합니다</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">03</div>
+                <h4>개발 &amp; 구축</h4>
+                <p>애자일 방법론으로 신속하고 안정적으로 구현합니다</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">04</div>
+                <h4>품질 검증</h4>
+                <p>철저한 테스트로 완성도 높은 결과물을 납품합니다</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">05</div>
+                <h4>운영 &amp; 지원</h4>
+                <p>지속적인 유지보수와 기술 지원을 제공합니다</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NEWS
+══════════════════════════════════════════ -->
+<section id="news">
+    <div class="container">
+        <div class="news-header">
+            <div>
+                <span class="section-label">News &amp; Insights</span>
+                <h2 class="section-title">새소식 &amp; 인사이트</h2>
+            </div>
+            <a href="#" class="news-more">
+                전체 보기
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="news-grid">
+            <!-- Featured -->
+            <div class="news-card">
+                <div class="news-thumb">
+                    <div class="news-thumb-inner thumb-1">
+                        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5"><rect x="4" y="8" width="40" height="32" rx="3"/><path d="M16 24h16M24 16v16"/></svg>
+                    </div>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span class="news-tag">공지사항</span>
+                        <span class="news-date">2026.04.10</span>
+                    </div>
+                    <h3>On-Spec, 2026년 상반기 신규 클라우드 서비스 출시 예정</h3>
+                    <p>고객의 디지털 전환을 가속화하는 차세대 클라우드 관리 플랫폼을 2026년 2분기 중 공식 출시할 예정입니다. 기존 솔루션 대비 성능 30% 향상과 비용 절감 효과를 제공합니다.</p>
+                </div>
+            </div>
+            <!-- Small 1 -->
+            <div class="news-card">
+                <div class="news-thumb">
+                    <div class="news-thumb-inner thumb-2">
+                        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5"><circle cx="24" cy="24" r="16"/><path d="M24 16v8l5 5"/></svg>
+                    </div>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span class="news-tag">프로젝트</span>
+                        <span class="news-date">2026.03.28</span>
+                    </div>
+                    <h3>대형 제조업체 ERP 시스템 구축 완료</h3>
+                    <p>국내 주요 제조 기업의 전사적 자원관리 시스템 구축 프로젝트를 성공적으로 완료하였습니다.</p>
+                </div>
+            </div>
+            <!-- Small 2 -->
+            <div class="news-card">
+                <div class="news-thumb">
+                    <div class="news-thumb-inner thumb-3">
+                        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.5"><path d="M6 36l12-12 8 8 16-20"/></svg>
+                    </div>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span class="news-tag">기술블로그</span>
+                        <span class="news-date">2026.03.15</span>
+                    </div>
+                    <h3>AI 기반 이상 탐지 시스템, 보안 위협 99% 차단</h3>
+                    <p>자체 개발한 머신러닝 보안 탐지 엔진의 실증 사례와 기술적 성과를 공유합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════ -->
+<section id="cta-banner">
+    <div class="container">
+        <div class="cta-banner-title">프로젝트를 함께 시작해볼까요?</div>
+        <p class="cta-banner-sub">전문 컨설턴트가 귀사에 최적화된 IT 솔루션을 제안해 드립니다.</p>
+        <a href="mailto:contact@on-spec.co.kr" class="btn btn-white">
+            무료 상담 신청하기
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
 <footer>
-    © 2026 On-Spec. All rights reserved.
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="nav-logo">
+                    <div class="logo-icon">
+                        <span></span><span></span>
+                        <span></span><span></span>
+                    </div>
+                    <span class="logo-text" style="color:white">On-<em>Spec</em></span>
+                </a>
+                <p>IT 전문 솔루션 기업 On-Spec은<br>고객의 디지털 혁신을 선도합니다.</p>
+            </div>
+            <div class="footer-col">
+                <h4>서비스</h4>
+                <ul>
+                    <li><a href="#">시스템 통합 (SI)</a></li>
+                    <li><a href="#">클라우드 전환</a></li>
+                    <li><a href="#">소프트웨어 개발</a></li>
+                    <li><a href="#">IT 보안 컨설팅</a></li>
+                    <li><a href="#">데이터 분석 &amp; AI</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>회사</h4>
+                <ul>
+                    <li><a href="#">회사 소개</a></li>
+                    <li><a href="#">연혁</a></li>
+                    <li><a href="#">파트너십</a></li>
+                    <li><a href="#">채용</a></li>
+                    <li><a href="#">뉴스룸</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>연락처</h4>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    <span>02-0000-0000</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>contact@on-spec.co.kr</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>서울특별시 강남구</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 On-Spec. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용약관</a>
+                <a href="#">사이트맵</a>
+            </div>
+        </div>
+    </div>
 </footer>
+
+<script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('navMobile');
+    toggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
+
+    // Smooth anchor scroll with offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'));
+                const top = target.getBoundingClientRect().top + window.scrollY - navH;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .process-step, .news-card, .value-item, .stat-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity .5s ease, transform .5s ease';
+        observer.observe(el);
+    });
+</script>
 
 </body>
 </html>

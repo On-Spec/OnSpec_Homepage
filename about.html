@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>회사소개 – ㈜온스펙</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #1e2240;
+            --accent:  #5a8a30;
+            --light:   #f8f9fa;
+            --text:    #333;
+            --border:  #ddd;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif;
+            background: var(--light);
+            color: var(--text);
+        }
+
+        /* ── Header ── */
+        header {
+            background: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 70px;
+        }
+        .logo-wrap a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-wrap img { height: 44px; width: auto; }
+
+        nav { display: flex; }
+        nav a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 0 22px;
+            height: 70px;
+            line-height: 70px;
+            letter-spacing: 0.03em;
+            transition: color 0.2s, background 0.2s;
+        }
+        nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+        nav a.active { color: #fff; border-bottom: 3px solid var(--accent); }
+
+        /* ── Sub-nav ── */
+        .sub-nav {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 70px;
+            z-index: 90;
+            display: flex;
+            justify-content: center;
+        }
+        .sub-nav a {
+            display: block;
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0 28px;
+            height: 48px;
+            line-height: 48px;
+            letter-spacing: 0.02em;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .sub-nav a:hover { color: var(--primary); border-bottom-color: var(--accent); }
+        .sub-nav a.active { color: var(--primary); border-bottom-color: var(--accent); }
+
+        /* ── Page header banner ── */
+        .page-banner {
+            background: linear-gradient(90deg, #1e2240 0%, #2e3a60 100%);
+            color: #fff;
+            padding: 40px 40px 32px;
+            text-align: center;
+        }
+        .page-banner h1 { font-size: 2rem; font-weight: 700; letter-spacing: 0.05em; }
+        .page-banner p { color: #9db4d8; margin-top: 8px; font-size: 14px; }
+
+        /* ── Sections ── */
+        .content-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section {
+            margin-top: 60px;
+            scroll-margin-top: 130px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .section-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent) 0%, #e0e0e0 100%);
+        }
+
+        /* ── Profile ── */
+        .profile-intro {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 32px;
+        }
+        .profile-intro p {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 28px;
+        }
+        .profile-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .profile-table tr { border-top: 1px solid #eee; }
+        .profile-table tr:first-child { border-top: 2px solid var(--primary); }
+        .profile-table th {
+            background: #f4f6fa;
+            color: var(--primary);
+            text-align: left;
+            padding: 12px 18px;
+            width: 140px;
+            font-weight: 700;
+        }
+        .profile-table td { padding: 12px 18px; color: #444; }
+
+        /* ── Org chart ── */
+        .org-chart {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            text-align: center;
+        }
+        .org-box {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            padding: 12px 32px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            min-width: 120px;
+        }
+        .org-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        .org-vline {
+            width: 2px;
+            height: 30px;
+            background: #aaa;
+        }
+        .org-hline-wrap {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0;
+        }
+        .org-hline {
+            height: 2px;
+            background: #aaa;
+            flex: 1;
+            margin-top: 0;
+        }
+        .org-children {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+        .org-child-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .org-child-vline {
+            width: 2px;
+            height: 28px;
+            background: #aaa;
+        }
+        .org-box-child {
+            display: inline-block;
+            background: #fff;
+            color: var(--primary);
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            min-width: 100px;
+            white-space: nowrap;
+        }
+
+        /* Draw the horizontal connector properly */
+        .org-branch {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+        .org-branch-line {
+            border-top: 2px solid #aaa;
+            width: 100%;
+            margin-top: 0;
+        }
+
+        /* ── Map ── */
+        .map-wrap {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .map-info {
+            padding: 18px 24px;
+            font-size: 14px;
+            color: #555;
+            border-top: 1px solid #eee;
+            background: #fafafa;
+        }
+        .map-info strong { color: var(--primary); }
+        #map { width: 100%; height: 380px; }
+
+        /* ── Contact ── */
+        .contact-grid {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 32px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .contact-item {
+            padding: 18px 22px;
+            border-radius: 6px;
+            background: var(--light);
+            border-left: 4px solid var(--accent);
+        }
+        .contact-item .label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .contact-item .value {
+            font-size: 16px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .contact-item .value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .contact-item .value a:hover { text-decoration: underline; }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--primary);
+            color: #aaa;
+            text-align: center;
+            padding: 28px 20px;
+            font-size: 13px;
+        }
+        footer a { color: #ccc; text-decoration: none; }
+        footer a:hover { color: #fff; }
+
+        @media (max-width: 640px) {
+            header { padding: 0 16px; }
+            .page-banner { padding: 28px 20px; }
+            .page-banner h1 { font-size: 1.5rem; }
+            .content-wrap { padding: 0 12px 60px; }
+            .sub-nav a { padding: 0 16px; font-size: 13px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            nav a { padding: 0 12px; font-size: 14px; }
+            .org-children { gap: 8px; }
+            .org-box-child { min-width: 80px; font-size: 12px; padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-wrap">
+        <a href="index.html"><img src="res/logo.png" alt="㈜온스펙 로고"></a>
+    </div>
+    <nav>
+        <a href="about.html" class="active">회사소개</a>
+        <a href="business.html">사업분야</a>
+    </nav>
+</header>
+
+<div class="sub-nav" id="subNav">
+    <a href="#profile">Profile</a>
+    <a href="#org">조직도</a>
+    <a href="#location">Location</a>
+    <a href="#contact">Contact</a>
+</div>
+
+<div class="page-banner">
+    <h1>회사소개</h1>
+    <p>Company Introduction</p>
+</div>
+
+<div class="content-wrap">
+
+    <!-- Profile -->
+    <div class="section" id="profile">
+        <div class="section-header">
+            <h2>Profile</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="profile-intro">
+            <p>㈜온스펙은 2006년부터 20년간 Vision 검사 분야에서 경험을 쌓아온 전문가들이 모여 설립한 기업으로
+               광학설계, S/W개발, 딥러닝을 이용한 Total 검사 솔루션 제공을 통해 고객의 가치에 기여하고자 합니다.</p>
+            <table class="profile-table">
+                <tr>
+                    <th>업체명</th>
+                    <td>㈜온스펙</td>
+                </tr>
+                <tr>
+                    <th>대표이사</th>
+                    <td>이관석</td>
+                </tr>
+                <tr>
+                    <th>주소</th>
+                    <td>경기도 화성시 봉담읍 동화길51, 6층 669호</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 조직도 -->
+    <div class="section" id="org">
+        <div class="section-header">
+            <h2>조직도</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="org-chart">
+            <div class="org-connector">
+                <div class="org-box">대표이사</div>
+                <div class="org-vline"></div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+                <div style="display:flex;flex-direction:column;align-items:center;width:100%;max-width:600px;">
+                    <!-- horizontal bar -->
+                    <div style="width:75%;border-top:2px solid #aaa;"></div>
+                    <div class="org-children" style="width:100%;max-width:600px;justify-content:space-between;padding:0 12px;">
+                        <div class="org-child-wrap">
+                            <div class="org-child-vline"></div>
+                            <div class="org-box-child">S/W 개발팀</div>
+                        </div>
+                        <div class="org-child-wrap">
+                            <div class="org-child-vline"></div>
+                            <div class="org-box-child">시스템 설계팀</div>
+                        </div>
+                        <div class="org-child-wrap">
+                            <div class="org-child-vline"></div>
+                            <div class="org-box-child">기술지원팀</div>
+                        </div>
+                        <div class="org-child-wrap">
+                            <div class="org-child-vline"></div>
+                            <div class="org-box-child">영업팀</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location -->
+    <div class="section" id="location">
+        <div class="section-header">
+            <h2>Location</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="map-wrap">
+            <div id="map"></div>
+            <div class="map-info">
+                <strong>㈜온스펙</strong> &nbsp;경기도 화성시 봉담읍 동화길51, 6층 669호
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="section" id="contact">
+        <div class="section-header">
+            <h2>Contact</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="label">TEL</div>
+                <div class="value">000-0000-0000</div>
+            </div>
+            <div class="contact-item">
+                <div class="label">FAX</div>
+                <div class="value">000-0000-0000</div>
+            </div>
+            <div class="contact-item" style="grid-column: 1 / -1;">
+                <div class="label">Contact</div>
+                <div class="value"><a href="mailto:kslee@on-spec.co.kr">kslee@on-spec.co.kr</a></div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /content-wrap -->
+
+<footer>
+    <p>© 2026 ㈜온스펙. All rights reserved. &nbsp;|&nbsp;
+       경기도 화성시 봉담읍 동화길51, 6층 669호 &nbsp;|&nbsp;
+       <a href="mailto:kslee@on-spec.co.kr">kslee@on-spec.co.kr</a>
+    </p>
+</footer>
+
+<!-- Kakao Map -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=194ebc2e518536d0afcc4bf7dd3fdeeb&libraries=services"></script>
+<script>
+(function () {
+    var container = document.getElementById('map');
+    var options = {
+        center: new kakao.maps.LatLng(37.2099, 126.9856),
+        level: 4
+    };
+    var map = new kakao.maps.Map(container, options);
+
+    var geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch('경기도 화성시 봉담읍 동화길 51', function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            map.setCenter(coords);
+            var marker = new kakao.maps.Marker({ map: map, position: coords });
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="padding:8px 12px;font-size:13px;font-weight:bold;color:#1e2240;">㈜온스펙</div>'
+            });
+            infowindow.open(map, marker);
+        }
+    });
+}());
+</script>
+
+<!-- Sub-nav active highlight on scroll -->
+<script>
+(function () {
+    var sections = ['profile', 'org', 'location', 'contact'];
+    var links = document.querySelectorAll('.sub-nav a');
+
+    function onScroll() {
+        var scrollY = window.scrollY + 140;
+        var current = sections[0];
+        sections.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el && el.offsetTop <= scrollY) current = id;
+        });
+        links.forEach(function (a) {
+            var href = a.getAttribute('href').replace('#', '');
+            a.classList.toggle('active', href === current);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+}());
+</script>
+
+</body>
+</html>

@@ -4,45 +4,245 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <title>On-Spec</title>
+    <title>㈜온스펙 - OnSpec</title>
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #1e2240;
+            --accent:  #5a8a30;
+            --light:   #f8f9fa;
+            --text:    #333;
+            --border:  #ddd;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif;
+            background: var(--light);
+            color: var(--text);
         }
+
+        /* ── Header ── */
         header {
-            background: #222;
-            color: white;
-            padding: 20px;
+            background: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 70px;
+        }
+        .logo-wrap a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-wrap img {
+            height: 44px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 0;
+        }
+        nav a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 0 22px;
+            height: 70px;
+            line-height: 70px;
+            letter-spacing: 0.03em;
+            transition: color 0.2s, background 0.2s;
+        }
+        nav a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+        }
+        nav a.active {
+            color: #fff;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(135deg, #1e2240 0%, #2e3a60 60%, #3d5020 100%);
+            color: #fff;
+            padding: 100px 40px;
             text-align: center;
         }
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 0.04em;
         }
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #cbd5e8;
         }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 13px 36px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-primary:hover { background: #4a7225; }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+        }
+
+        /* ── Cards ── */
+        .cards-section {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 36px 32px;
+            text-decoration: none;
+            color: var(--text);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 6px 24px rgba(30,34,64,0.12);
+            transform: translateY(-3px);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+        }
+        .card-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+        }
+        .card-sub {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .card-sub span {
+            font-size: 13px;
+            color: #777;
+            padding-left: 10px;
+            border-left: 2px solid #ddd;
+        }
+
+        /* ── Footer ── */
         footer {
+            background: var(--primary);
+            color: #aaa;
             text-align: center;
-            padding: 20px;
-            color: #888;
+            padding: 28px 20px;
+            font-size: 13px;
+            margin-top: 60px;
+        }
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        footer a:hover { color: #fff; }
+
+        @media (max-width: 640px) {
+            header { padding: 0 16px; }
+            .hero { padding: 60px 20px; }
+            .hero h1 { font-size: 1.8rem; }
+            .cards-section { grid-template-columns: 1fr; padding: 0 16px; }
+            nav a { padding: 0 12px; font-size: 14px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>On-Spec</h1>
+    <div class="logo-wrap">
+        <a href="index.html">
+            <img src="res/logo.png" alt="㈜온스펙 로고">
+        </a>
+    </div>
+    <nav>
+        <a href="about.html">회사소개</a>
+        <a href="business.html">사업분야</a>
+    </nav>
 </header>
 
+<section class="hero">
+    <h1>Total Vision Inspection Solution</h1>
+    <p>㈜온스펙은 2006년부터 20년간 Vision 검사 분야에서 경험을 쌓아온 전문가들이 모여 설립한 기업입니다.<br>
+       광학설계, S/W개발, 딥러닝을 이용한 Total 검사 솔루션 제공을 통해 고객의 가치에 기여하고자 합니다.</p>
+    <div class="hero-buttons">
+        <a href="about.html" class="btn btn-primary">회사소개</a>
+        <a href="business.html" class="btn btn-outline">사업분야</a>
+    </div>
+</section>
+
+<div class="cards-section">
+    <a href="about.html" class="card">
+        <div class="card-title">회사소개</div>
+        <div class="card-desc">온스펙의 비전, 조직, 위치, 연락처를 확인하세요.</div>
+        <div class="card-sub">
+            <span>Profile</span>
+            <span>조직도</span>
+            <span>Location</span>
+            <span>Contact</span>
+        </div>
+    </a>
+    <a href="business.html" class="card">
+        <div class="card-title">사업분야</div>
+        <div class="card-desc">이차전지, PCB/FPCB, 카메라 모듈, 디스플레이 검사 솔루션을 제공합니다.</div>
+        <div class="card-sub">
+            <span>이차전지</span>
+            <span>PCB, FPCB</span>
+            <span>카메라 모듈</span>
+            <span>Display</span>
+        </div>
+    </a>
+</div>
+
 <footer>
-    © 2026 On-Spec. All rights reserved.
+    <p>© 2026 ㈜온스펙. All rights reserved. &nbsp;|&nbsp;
+       경기도 화성시 봉담읍 동화길51, 6층 669호 &nbsp;|&nbsp;
+       <a href="mailto:kslee@on-spec.co.kr">kslee@on-spec.co.kr</a>
+    </p>
 </footer>
 
 </body>

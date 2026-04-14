@@ -1,48 +1,103 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <title>On-Spec</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-        }
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #888;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>㈜온스펙 – Vision 검사 솔루션 전문기업</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>On-Spec</h1>
+<!-- ====== HEADER ====== -->
+<header id="main-header">
+  <div class="header-inner">
+    <div class="logo">
+      <a href="index.html">
+        <img src="res/logo.png" alt="On-Spec 로고">
+      </a>
+    </div>
+    <nav id="main-nav">
+      <ul>
+        <li>
+          <a href="company.html">회사소개</a>
+          <ul class="dropdown-menu">
+            <li><a href="company.html#profile">Profile</a></li>
+            <li><a href="company.html#org">조직도</a></li>
+            <li><a href="company.html#location">Location</a></li>
+            <li><a href="company.html#contact">Contact</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="business.html">사업분야</a>
+          <ul class="dropdown-menu">
+            <li><a href="business.html#battery">이차전지</a></li>
+            <li><a href="business.html#pcb">PCB, FPCB</a></li>
+            <li><a href="business.html#camera">카메라 모듈</a></li>
+            <li><a href="business.html#display">Display</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
+<!-- ====== HERO ====== -->
+<section class="index-hero">
+  <div class="index-hero-content">
+    <img src="res/logo.png" alt="On-Spec" class="index-hero-logo">
+    <h2>Vision 검사 솔루션 전문기업</h2>
+    <p>㈜온스펙은 2006년부터 20년간 Vision 검사 분야에서 경험을 쌓아온 전문가들이 설립한 기업입니다.<br>
+       광학설계·S/W개발·딥러닝을 활용한 Total 검사 솔루션으로 고객의 가치에 기여합니다.</p>
+    <div class="hero-buttons">
+      <a href="company.html" class="btn-primary">회사소개</a>
+      <a href="business.html" class="btn-secondary">사업분야 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FEATURE CARDS ====== -->
+<div class="index-features">
+  <p class="features-title">주요 사업 분야</p>
+  <p class="features-sub">첨단 비전 검사 기술로 다양한 산업에 최적화된 솔루션을 제공합니다</p>
+  <div class="features-grid">
+    <a href="business.html#battery" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="f-icon">🔋</div>
+        <h3>이차전지</h3>
+        <p>전극·조립·모듈 공정 전반의 표면 검사 및 치수 측정 Vision 시스템</p>
+      </div>
+    </a>
+    <a href="business.html#pcb" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="f-icon">🖥️</div>
+        <h3>PCB / FPCB</h3>
+        <p>AOI·AVI·RTR 기반 인쇄 회로 기판 패턴 및 외관 검사 시스템</p>
+      </div>
+    </a>
+    <a href="business.html#camera" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="f-icon">📷</div>
+        <h3>카메라 모듈</h3>
+        <p>Camera Module·Laser Module·Lens 외관 검사기 전 라인업</p>
+      </div>
+    </a>
+    <a href="business.html#display" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="f-icon">📺</div>
+        <h3>Display</h3>
+        <p>COF·S-IC Reel to Reel, TSP AOI, OLED FMM AOI/AVI 등 디스플레이 검사</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ====== FOOTER ====== -->
 <footer>
-    © 2026 On-Spec. All rights reserved.
+  <strong>㈜온스펙</strong> &nbsp;|&nbsp; 경기도 화성시 봉담읍 동화길51, 6층 669호<br>
+  TEL : 000-0000-0000 &nbsp;|&nbsp; FAX : 000-0000-0000 &nbsp;|&nbsp;
+  E-mail : <a href="mailto:kslee@on-spec.co.kr">kslee@on-spec.co.kr</a><br><br>
+  © 2025 On-Spec Co., Ltd. All rights reserved.
 </footer>
 
 </body>

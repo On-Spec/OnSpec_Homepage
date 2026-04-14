@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>On-Spec | 회사소개</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────── -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <img src="favicon.ico" alt="On-Spec Logo">
+      On-Spec
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item active">
+        <a href="company.html" class="nav-link">회사소개 <span class="arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="#profile" class="sub-link">Profile</a>
+          <a href="#org" class="sub-link">조직도</a>
+          <a href="#location" class="sub-link">Location</a>
+          <a href="#contact" class="sub-link">Contact</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="battery.html" class="nav-link">사업분야 <span class="arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="battery.html">이차전지</a>
+          <a href="pcb.html">PCB</a>
+          <a href="camera.html">카메라 모듈</a>
+          <a href="display.html">Display</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Sub-Nav ────────────────────────────── -->
+<div class="sub-nav">
+  <div class="sub-nav-inner">
+    <a href="#profile" class="sub-link">Profile</a>
+    <a href="#org" class="sub-link">조직도</a>
+    <a href="#location" class="sub-link">Location</a>
+    <a href="#contact" class="sub-link">Contact</a>
+  </div>
+</div>
+
+<!-- ── Page Hero ─────────────────────────── -->
+<div class="page-hero">
+  <h1>회사소개</h1>
+  <p>On-Spec의 비전, 조직 구조, 위치 및 연락처를 안내합니다.</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     PROFILE
+═══════════════════════════════════════ -->
+<div id="profile" class="scroll-anchor"></div>
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Profile</h2>
+    <p class="section-subtitle">On-Spec Co., Ltd.의 기업 프로필입니다.</p>
+
+    <table class="info-table">
+      <tbody>
+        <tr>
+          <th>회사명</th>
+          <td>On-Spec Co., Ltd. (주식회사 온스펙)</td>
+        </tr>
+        <tr>
+          <th>설립연도</th>
+          <td>2010년</td>
+        </tr>
+        <tr>
+          <th>대표이사</th>
+          <td>대표이사 성명</td>
+        </tr>
+        <tr>
+          <th>사업 분야</th>
+          <td>이차전지 검사장비 · PCB AOI · 카메라 모듈 검사 · 디스플레이 검사</td>
+        </tr>
+        <tr>
+          <th>주요 고객사</th>
+          <td>국내외 대형 전자·배터리·자동차 부품 제조사</td>
+        </tr>
+        <tr>
+          <th>인증</th>
+          <td>ISO 9001 · ISO 14001 · 기업부설연구소 인정</td>
+        </tr>
+        <tr>
+          <th>홈페이지</th>
+          <td>on-spec.co.kr</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-grid" style="margin-top:48px;">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Mission</h3>
+        <p>정밀 검사 기술로 제조 산업의 품질 혁신을 이끌고, 고객의 경쟁력을 극대화합니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌟</div>
+        <h3>Vision</h3>
+        <p>글로벌 검사 장비 시장을 선도하는 기술 혁신 기업으로 성장합니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💎</div>
+        <h3>Core Values</h3>
+        <p>신뢰 · 혁신 · 정밀성 · 고객 중심 · 지속 가능성을 핵심 가치로 삼습니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     조직도
+═══════════════════════════════════════ -->
+<div id="org" class="scroll-anchor"></div>
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">조직도</h2>
+    <p class="section-subtitle">On-Spec의 조직 구성입니다.</p>
+
+    <div class="org-chart">
+      <!-- CEO -->
+      <div class="org-box">대표이사</div>
+      <div class="org-connector"></div>
+
+      <!-- Level 2 -->
+      <div style="display:flex; gap:60px; align-items:flex-start; justify-content:center; position:relative;">
+        <div style="position:absolute;top:0;left:calc(50% - 120px);right:calc(50% - 120px);height:2px;background:var(--primary);"></div>
+
+        <!-- Left branch: 경영지원본부 -->
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="org-connector"></div>
+          <div class="org-box" style="font-size:0.88rem;padding:10px 22px;">경영지원본부</div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">경영기획팀</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">재무회계팀</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right branch: 기술연구소 -->
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="org-connector"></div>
+          <div class="org-box" style="font-size:0.88rem;padding:10px 22px;">기술연구소</div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">HW개발팀</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">SW개발팀</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:32px;"></div>
+
+      <!-- Second row of divisions -->
+      <div style="display:flex;gap:60px;align-items:flex-start;justify-content:center;position:relative;">
+        <div style="position:absolute;top:0;left:calc(50% - 180px);right:calc(50% - 180px);height:2px;background:var(--primary);"></div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="org-connector"></div>
+          <div class="org-box" style="font-size:0.88rem;padding:10px 22px;">영업본부</div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">국내영업팀</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">해외영업팀</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="org-connector"></div>
+          <div class="org-box" style="font-size:0.88rem;padding:10px 22px;">생산기술팀</div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">품질관리팀</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="org-connector" style="height:20px;"></div>
+              <div class="org-box secondary">A/S팀</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LOCATION
+═══════════════════════════════════════ -->
+<div id="location" class="scroll-anchor"></div>
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Location</h2>
+    <p class="section-subtitle">On-Spec 본사 및 주요 거점 위치입니다.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;">
+      <div>
+        <table class="info-table">
+          <tbody>
+            <tr>
+              <th>본사</th>
+              <td>경기도 성남시 분당구 판교로 (주소)</td>
+            </tr>
+            <tr>
+              <th>전화</th>
+              <td>031-000-0000</td>
+            </tr>
+            <tr>
+              <th>팩스</th>
+              <td>031-000-0001</td>
+            </tr>
+            <tr>
+              <th>이메일</th>
+              <td>info@on-spec.co.kr</td>
+            </tr>
+            <tr>
+              <th>교통편</th>
+              <td>판교역 2번 출구 도보 10분<br>버스: 10-1, 720번</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="map-placeholder">
+          <span class="map-icon">📍</span>
+          <span>지도 영역</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);">Google Maps 또는 카카오맵 삽입 예정</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+<div id="contact" class="scroll-anchor"></div>
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">문의 사항이 있으시면 아래 양식을 통해 연락주세요.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">이름 *</label>
+            <input type="text" id="name" placeholder="홍길동">
+          </div>
+          <div class="form-group">
+            <label for="company">회사명</label>
+            <input type="text" id="company" placeholder="주식회사 예시">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">이메일 *</label>
+            <input type="email" id="email" placeholder="example@company.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" placeholder="010-0000-0000">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="subject">문의 분야</label>
+            <select id="subject">
+              <option value="">선택해주세요</option>
+              <option value="battery">이차전지 검사장비</option>
+              <option value="pcb">PCB 검사장비</option>
+              <option value="camera">카메라 모듈 검사장비</option>
+              <option value="display">Display 검사장비</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="message">문의 내용 *</label>
+            <textarea id="message" placeholder="문의 내용을 입력해주세요."></textarea>
+          </div>
+        </div>
+        <button class="btn-primary" type="button">문의 전송</button>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-icon">📞</div>
+          <h3>전화 문의</h3>
+          <p>평일 09:00 – 18:00<br><strong style="font-size:1.05rem;color:var(--primary-darker);">031-000-0000</strong></p>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-icon">✉️</div>
+          <h3>이메일 문의</h3>
+          <p>24시간 접수 가능 (영업일 기준 1일 이내 답변)<br><strong style="color:var(--primary-darker);">info@on-spec.co.kr</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🕐</div>
+          <h3>영업 시간</h3>
+          <p>월 – 금: 09:00 – 18:00<br>점심: 12:00 – 13:00<br>토 · 일 · 공휴일 휴무</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ─────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="favicon.ico" alt="On-Spec Logo">
+          On-Spec
+        </div>
+        <p class="footer-desc">
+          정밀 검사 솔루션 전문 기업 On-Spec은<br>
+          고객의 품질 경쟁력 강화를 위해 최선을 다합니다.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>회사소개</h4>
+        <ul>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#org">조직도</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>사업분야</h4>
+        <ul>
+          <li><a href="battery.html">이차전지</a></li>
+          <li><a href="pcb.html">PCB</a></li>
+          <li><a href="camera.html">카메라 모듈</a></li>
+          <li><a href="display.html">Display</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 On-Spec Co., Ltd. All rights reserved. | on-spec.co.kr
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768 && this.nextElementSibling) {
+        e.preventDefault();
+        this.parentElement.classList.toggle('open');
+      }
+    });
+  });
+
+  // Highlight active sub-nav link on scroll
+  const subLinks = document.querySelectorAll('.sub-link');
+  const sections = ['profile','org','location','contact'].map(id => document.getElementById(id));
+
+  function updateSubNav() {
+    let current = '';
+    sections.forEach(sec => {
+      if (sec && window.scrollY + 130 >= sec.offsetTop) {
+        current = sec.id;
+      }
+    });
+    subLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current ||
+        link.getAttribute('href') === 'company.html#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateSubNav, { passive: true });
+  updateSubNav();
+</script>
+</body>
+</html>

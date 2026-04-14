@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>On-Spec | Display</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────── -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <img src="favicon.ico" alt="On-Spec Logo">
+      On-Spec
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item">
+        <a href="company.html" class="nav-link">회사소개 <span class="arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="company.html#profile">Profile</a>
+          <a href="company.html#org">조직도</a>
+          <a href="company.html#location">Location</a>
+          <a href="company.html#contact">Contact</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a href="battery.html" class="nav-link">사업분야 <span class="arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="battery.html">이차전지</a>
+          <a href="pcb.html">PCB</a>
+          <a href="camera.html">카메라 모듈</a>
+          <a href="display.html" class="active">Display</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Breadcrumb ─────────────────────────── -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">홈</a>
+    <span class="sep">›</span>
+    <span>사업분야</span>
+    <span class="sep">›</span>
+    <span class="current">Display</span>
+  </div>
+</div>
+
+<!-- ── Business Hero ─────────────────────── -->
+<div class="biz-hero">
+  <div class="biz-icon">🖥️</div>
+  <h1>Display</h1>
+  <p>
+    OLED, LCD, Micro-LED 등 다양한 디스플레이 패널의 픽셀 결함, 얼룩,
+    색상 불균일, 이물질을 고속·고정밀 광학 검사 시스템으로 검출합니다.
+  </p>
+</div>
+
+<!-- ── Overview ──────────────────────────── -->
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">개요</h2>
+    <p class="section-subtitle">
+      대면적 패널부터 마이크로 디스플레이까지 전 사이즈 대응 검사 플랫폼을 보유합니다.
+    </p>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>픽셀 결함 검사</h4>
+        <p>Dead Pixel, Bright Dot, Line Defect 등 픽셀 단위 결함을 고속으로 자동 검출</p>
+      </div>
+      <div class="feature-item">
+        <h4>얼룩 (Mura) 검사</h4>
+        <p>휘도·색도 불균일(Mura)을 고감도 카메라와 인지 기반 알고리즘으로 정량 평가</p>
+      </div>
+      <div class="feature-item">
+        <h4>색상 균일성 측정</h4>
+        <p>전 화면 색좌표(CIE xy) 분포, ΔE 측정, 색 온도 균일성 분석</p>
+      </div>
+      <div class="feature-item">
+        <h4>이물질 · 스크래치 검사</h4>
+        <p>패널 표면 이물질, 스크래치, 필름 기포 등 외관 결함 고해상도 검출</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Products ──────────────────────────── -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">주요 제품</h2>
+    <p class="section-subtitle">디스플레이 유형 및 크기별 최적화된 검사 시스템</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📺</div>
+        <h3>OS-DP100</h3>
+        <p>OLED 패널 검사 시스템<br>스마트폰~TV 패널 대응, 픽셀·Mura 통합 검사</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>OS-DP200</h3>
+        <p>LCD 패널 검사 시스템<br>백라이트 균일성, 컬러 필터, 편광판 통합 검사</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔬</div>
+        <h3>OS-DP300</h3>
+        <p>Micro-LED / Mini-LED 검사 시스템<br>μm 급 초고해상도 검사, 대형 기판 지원</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Spec Table ─────────────────────────── -->
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">주요 사양</h2>
+    <p class="section-subtitle">OS-DP 시리즈 주요 사양입니다.</p>
+    <table class="spec-table">
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>OS-DP100 (OLED)</th>
+          <th>OS-DP200 (LCD)</th>
+          <th>OS-DP300 (Micro-LED)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>적용 패널</td>
+          <td>OLED (rigid / flexible)</td>
+          <td>TFT-LCD</td>
+          <td>Micro-LED / Mini-LED</td>
+        </tr>
+        <tr>
+          <td>최대 기판 크기</td>
+          <td>Gen 8.5 (2500×2200mm)</td>
+          <td>Gen 10.5 (2940×3370mm)</td>
+          <td>Gen 6 (1500×1850mm)</td>
+        </tr>
+        <tr>
+          <td>최소 결함 크기</td>
+          <td>20 μm</td>
+          <td>30 μm</td>
+          <td>5 μm</td>
+        </tr>
+        <tr>
+          <td>Mura 감도</td>
+          <td>ΔL &lt; 0.5%</td>
+          <td>ΔL &lt; 1.0%</td>
+          <td>ΔL &lt; 0.3%</td>
+        </tr>
+        <tr>
+          <td>AI 결함 분류</td>
+          <td>지원</td>
+          <td>지원</td>
+          <td>지원</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── Footer ─────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="favicon.ico" alt="On-Spec Logo">
+          On-Spec
+        </div>
+        <p class="footer-desc">
+          정밀 검사 솔루션 전문 기업 On-Spec은<br>
+          고객의 품질 경쟁력 강화를 위해 최선을 다합니다.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>회사소개</h4>
+        <ul>
+          <li><a href="company.html#profile">Profile</a></li>
+          <li><a href="company.html#org">조직도</a></li>
+          <li><a href="company.html#location">Location</a></li>
+          <li><a href="company.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>사업분야</h4>
+        <ul>
+          <li><a href="battery.html">이차전지</a></li>
+          <li><a href="pcb.html">PCB</a></li>
+          <li><a href="camera.html">카메라 모듈</a></li>
+          <li><a href="display.html">Display</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 On-Spec Co., Ltd. All rights reserved. | on-spec.co.kr
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768 && this.nextElementSibling) {
+        e.preventDefault();
+        this.parentElement.classList.toggle('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>

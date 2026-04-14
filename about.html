@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>회사소개 | ㈜온스펙</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-top">
+
+<!-- ══ Navigation ════════════════════════════════════════════════ -->
+<nav class="nav-wrapper">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="res/logo.png" alt="㈜온스펙">
+        </a>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="about.html" class="nav-link">회사소개</a>
+                <ul class="dropdown">
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#org">조직도</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="business.html" class="nav-link">사업분야</a>
+                <ul class="dropdown">
+                    <li><a href="business.html#battery">이차전지</a></li>
+                    <li><a href="business.html#pcb">PCB, FPCB</a></li>
+                    <li><a href="business.html#camera">카메라 모듈</a></li>
+                    <li><a href="business.html#display">Display</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══ Page Title ════════════════════════════════════════════════ -->
+<div class="page-title-bar">
+    <h1>회사소개</h1>
+</div>
+
+<!-- ══ Body ══════════════════════════════════════════════════════ -->
+<div class="page-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-title">회사소개</div>
+        <ul class="sidebar-menu">
+            <li><a href="#profile"  id="link-profile">Profile</a></li>
+            <li><a href="#org"      id="link-org">조직도</a></li>
+            <li><a href="#location" id="link-location">Location</a></li>
+            <li><a href="#contact"  id="link-contact">Contact</a></li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="content-area">
+
+        <!-- ── Profile ──────────────────────────────────────── -->
+        <section id="profile" class="content-section">
+            <h2 class="section-title">Profile</h2>
+            <p class="profile-intro">
+                ㈜온스펙은 2006년부터 20년간 Vision 검사 분야에서 경험을 쌓아온 전문가들이 모여
+                설립한 기업으로 광학설계, S/W개발, 딥러닝을 이용한 Total 검사 솔루션 제공을 통해
+                고객의 가치에 기여하고자 합니다.
+            </p>
+            <table class="profile-table">
+                <tr>
+                    <th>업체명</th>
+                    <td>㈜온스펙</td>
+                </tr>
+                <tr>
+                    <th>대표이사</th>
+                    <td>이관석</td>
+                </tr>
+                <tr>
+                    <th>주소</th>
+                    <td>경기도 화성시 봉담읍 동화길51, 6층 669호</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- ── 조직도 ────────────────────────────────────────── -->
+        <section id="org" class="content-section">
+            <h2 class="section-title">조직도</h2>
+            <div class="org-chart">
+                <!-- CEO -->
+                <div class="org-ceo-wrap">
+                    <div class="org-node ceo">대표이사</div>
+                    <div class="org-vline long"></div>
+                </div>
+                <!-- Connector: horizontal bar + vertical stubs + teams -->
+                <div class="org-teams-outer">
+                    <div class="org-hbar"></div>
+                    <div class="org-teams-row">
+                        <div class="org-team-col">
+                            <div class="org-vline short"></div>
+                            <div class="org-node team">S/W 개발팀</div>
+                        </div>
+                        <div class="org-team-col">
+                            <div class="org-vline short"></div>
+                            <div class="org-node team">시스템 설계팀</div>
+                        </div>
+                        <div class="org-team-col">
+                            <div class="org-vline short"></div>
+                            <div class="org-node team">기술지원팀</div>
+                        </div>
+                        <div class="org-team-col">
+                            <div class="org-vline short"></div>
+                            <div class="org-node team">영업팀</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Location ─────────────────────────────────────── -->
+        <section id="location" class="content-section">
+            <h2 class="section-title">Location</h2>
+            <div id="kakaomap"></div>
+            <p class="location-address">경기도 화성시 봉담읍 동화길51, 6층 669호</p>
+        </section>
+
+        <!-- ── Contact ──────────────────────────────────────── -->
+        <section id="contact" class="content-section">
+            <h2 class="section-title">Contact</h2>
+            <ul class="contact-list">
+                <li>
+                    <span class="contact-label">TEL</span>
+                    <span class="contact-value">000-0000-0000</span>
+                </li>
+                <li>
+                    <span class="contact-label">FAX</span>
+                    <span class="contact-value">000-0000-0000</span>
+                </li>
+                <li>
+                    <span class="contact-label">Contact</span>
+                    <span class="contact-value">
+                        <a href="mailto:kslee@on-spec.co.kr">kslee@on-spec.co.kr</a>
+                    </span>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+</div>
+
+<!-- ══ Footer ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+    © 2026 ㈜온스펙. All rights reserved.
+</footer>
+
+<!-- ══ Kakao Map API ══════════════════════════════════════════════ -->
+<script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=194ebc2e518536d0afcc4bf7dd3fdeeb&libraries=services">
+</script>
+<script>
+(function () {
+    var container = document.getElementById('kakaomap');
+    var options = {
+        center: new kakao.maps.LatLng(37.1868, 126.9638),
+        level: 4
+    };
+    var map = new kakao.maps.Map(container, options);
+
+    var geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch('경기도 화성시 봉담읍 동화길51', function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            map.setCenter(coords);
+
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="padding:8px 14px;font-size:13px;font-weight:700;">㈜온스펙</div>'
+            });
+            infowindow.open(map, marker);
+        }
+    });
+}());
+</script>
+
+<!-- ══ Sidebar active-link tracking ══════════════════════════════ -->
+<script>
+(function () {
+    var sections = ['profile', 'org', 'location', 'contact'];
+    var links    = {};
+    sections.forEach(function (id) {
+        links[id] = document.getElementById('link-' + id);
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            var id  = entry.target.id;
+            var lnk = links[id];
+            if (!lnk) return;
+            if (entry.isIntersecting) {
+                sections.forEach(function (s) {
+                    if (links[s]) links[s].classList.remove('active');
+                });
+                lnk.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-70px 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+}());
+</script>
+
+</body>
+</html>

@@ -4,45 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <title>On-Spec</title>
+    <title>㈜온스펙 | On-Spec</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
+        /* ── Hero ─────────────────────────────────────────── */
+        .hero {
+            padding-top: var(--nav-h);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #f8f8f6 0%, #edf5e2 100%);
             text-align: center;
+            padding-left: 24px;
+            padding-right: 24px;
         }
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
+        .hero-logo {
+            width: 260px;
+            max-width: 80vw;
+            margin-bottom: 32px;
         }
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+        .hero-tagline {
+            font-size: 17px;
+            color: var(--text-light);
+            max-width: 560px;
+            line-height: 1.9;
+            margin-bottom: 48px;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #888;
+        .hero-tagline strong {
+            color: var(--primary);
+        }
+        .hero-nav {
+            display: flex;
+            gap: 24px;
+        }
+        .hero-btn {
+            display: block;
+            padding: 14px 48px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .hero-btn.primary {
+            background: var(--accent);
+            color: var(--white);
+            border: 2px solid var(--accent);
+        }
+        .hero-btn.primary:hover {
+            background: #5d8e34;
+            border-color: #5d8e34;
+        }
+        .hero-btn.secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .hero-btn.secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        @media (max-width: 480px) {
+            .hero-nav { flex-direction: column; gap: 14px; }
+            .hero-btn { padding: 13px 36px; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>On-Spec</h1>
-</header>
+<!-- ══ Navigation ════════════════════════════════════════════════ -->
+<nav class="nav-wrapper">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="res/logo.png" alt="㈜온스펙">
+        </a>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="about.html" class="nav-link">회사소개</a>
+                <ul class="dropdown">
+                    <li><a href="about.html#profile">Profile</a></li>
+                    <li><a href="about.html#org">조직도</a></li>
+                    <li><a href="about.html#location">Location</a></li>
+                    <li><a href="about.html#contact">Contact</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="business.html" class="nav-link">사업분야</a>
+                <ul class="dropdown">
+                    <li><a href="business.html#battery">이차전지</a></li>
+                    <li><a href="business.html#pcb">PCB, FPCB</a></li>
+                    <li><a href="business.html#camera">카메라 모듈</a></li>
+                    <li><a href="business.html#display">Display</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<footer>
-    © 2026 On-Spec. All rights reserved.
+<!-- ══ Hero ══════════════════════════════════════════════════════ -->
+<main class="hero">
+    <img src="res/logo.png" alt="㈜온스펙" class="hero-logo">
+    <p class="hero-tagline">
+        <strong>Vision 검사 분야 20년 경험의 전문가 그룹</strong><br>
+        광학설계 · S/W개발 · 딥러닝을 통한 Total 검사 솔루션
+    </p>
+    <div class="hero-nav">
+        <a href="about.html" class="hero-btn primary">회사소개</a>
+        <a href="business.html" class="hero-btn secondary">사업분야</a>
+    </div>
+</main>
+
+<!-- ══ Footer ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+    © 2026 ㈜온스펙. All rights reserved.
 </footer>
 
 </body>

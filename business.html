@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>사업분야 | ㈜온스펙</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-top">
+
+<!-- ══ Navigation ════════════════════════════════════════════════ -->
+<nav class="nav-wrapper">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="res/logo.png" alt="㈜온스펙">
+        </a>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="about.html" class="nav-link">회사소개</a>
+                <ul class="dropdown">
+                    <li><a href="about.html#profile">Profile</a></li>
+                    <li><a href="about.html#org">조직도</a></li>
+                    <li><a href="about.html#location">Location</a></li>
+                    <li><a href="about.html#contact">Contact</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="business.html" class="nav-link">사업분야</a>
+                <ul class="dropdown">
+                    <li><a href="#battery">이차전지</a></li>
+                    <li><a href="#pcb">PCB, FPCB</a></li>
+                    <li><a href="#camera">카메라 모듈</a></li>
+                    <li><a href="#display">Display</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══ Page Title ════════════════════════════════════════════════ -->
+<div class="page-title-bar">
+    <h1>사업분야</h1>
+</div>
+
+<!-- ══ Body ══════════════════════════════════════════════════════ -->
+<div class="page-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-title">사업분야</div>
+        <ul class="sidebar-menu">
+            <li><a href="#battery" id="link-battery">이차전지</a></li>
+            <li><a href="#pcb"     id="link-pcb">PCB, FPCB</a></li>
+            <li><a href="#camera"  id="link-camera">카메라 모듈</a></li>
+            <li><a href="#display" id="link-display">Display</a></li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="content-area">
+
+        <!-- ── 이차전지 ──────────────────────────────────────── -->
+        <section id="battery" class="content-section">
+            <h2 class="section-title">이차전지</h2>
+            <div class="biz-content">
+                <div class="biz-image">
+                    <img src="res/1_elec.png" alt="이차전지">
+                </div>
+                <ul class="biz-list">
+                    <li>전극공정 Coater, Roll-Press, Slitter 표면 검사 Vision, 치수 측정 Vision</li>
+                    <li>조립 공정 L&amp;S 라인 비전 시스템</li>
+                    <li>조립 공정 PKG 라인 비전 시스템</li>
+                    <li>모듈 공정 Bur-bar 외 비전 시스템</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ── PCB, FPCB ─────────────────────────────────────── -->
+        <section id="pcb" class="content-section">
+            <h2 class="section-title">PCB, FPCB</h2>
+            <div class="biz-content">
+                <div class="biz-image">
+                    <img src="res/2_pcb.png" alt="PCB, FPCB">
+                </div>
+                <ul class="biz-list">
+                    <li>PCB, FPCB 인쇄 회로 기판 패턴 검사기 (AOI)</li>
+                    <li>PCB, FPCB 인쇄 회로 기판 외관 검사기 (AVI)</li>
+                    <li>FPCB Roll to Roll 패턴 검사기 (RTR AOI &amp; VRS)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ── 카메라 모듈 ────────────────────────────────────── -->
+        <section id="camera" class="content-section">
+            <h2 class="section-title">카메라 모듈</h2>
+            <div class="biz-content">
+                <div class="biz-image">
+                    <img src="res/3_camera.png" alt="카메라 모듈">
+                </div>
+                <ul class="biz-list">
+                    <li>Camera Module 외관검사기</li>
+                    <li>Camera Module 6면 외관검사기</li>
+                    <li>Laser Module 외관검사기</li>
+                    <li>Lens 외관 검사기</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ── Display ───────────────────────────────────────── -->
+        <section id="display" class="content-section">
+            <h2 class="section-title">Display</h2>
+            <div class="biz-content">
+                <div class="biz-image">
+                    <img src="res/4_display.png" alt="Display">
+                </div>
+                <ul class="biz-list">
+                    <li>COF Reel to Reel AFVI (최종 외관 검사기)</li>
+                    <li>S-IC Reel to Reel AFVI (최종 외관 검사기)</li>
+                    <li>Touch Screen Panel AOI</li>
+                    <li>투명 ITO Pattern AOI</li>
+                    <li>OLED FMM AOI/AVI</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- ══ Footer ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+    © 2026 ㈜온스펙. All rights reserved.
+</footer>
+
+<!-- ══ Sidebar active-link tracking ══════════════════════════════ -->
+<script>
+(function () {
+    var sections = ['battery', 'pcb', 'camera', 'display'];
+    var links    = {};
+    sections.forEach(function (id) {
+        links[id] = document.getElementById('link-' + id);
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            var id  = entry.target.id;
+            var lnk = links[id];
+            if (!lnk) return;
+            if (entry.isIntersecting) {
+                sections.forEach(function (s) {
+                    if (links[s]) links[s].classList.remove('active');
+                });
+                lnk.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-70px 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+}());
+</script>
+
+</body>
+</html>

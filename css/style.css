@@ -133,13 +133,19 @@ body {
   opacity: .75;
 }
 
-/* ── Sub-Nav (sticky inside pages) ──────────────────────── */
+/* ── Sub-Nav (sticky inside pages, expand on hover) ─────── */
 .sub-nav {
   background: #3D3D3D;
   position: sticky;
   top: 72px;
   z-index: 900;
+  max-height: 6px;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+  border-bottom: 3px solid #7AB53C;
 }
+
+.sub-nav:hover { max-height: 52px; }
 
 .sub-nav ul {
   list-style: none;
@@ -390,12 +396,10 @@ body {
   font-size: 14px;
   line-height: 1.7;
   color: #3D3D3D;
-  transition: box-shadow .2s, transform .2s;
 }
 
 .biz-card:hover {
   box-shadow: 0 4px 16px rgba(122,181,60,0.15);
-  transform: translateY(-2px);
 }
 
 .biz-card .biz-card-icon {
@@ -542,7 +546,7 @@ footer a { color: #7AB53C; text-decoration: none; }
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
   .header-inner { height: 60px; padding: 0 16px; }
-  .sub-nav { top: 60px; }
+  .sub-nav { top: 60px; max-height: 6px; }
 
   #main-nav > ul > li > a { padding: 0 14px; font-size: 14px; line-height: 60px; }
 

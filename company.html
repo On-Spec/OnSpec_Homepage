@@ -6,6 +6,7 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <title>회사소개 – ㈜온스펙</title>
   <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=32e0tjlb1f"></script>
 </head>
 <body>
 
@@ -134,13 +135,7 @@
   <!-- Location -->
   <section class="content-section" id="location">
     <h2 class="section-title">Location</h2>
-    <div class="map-placeholder">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-      </svg>
-      <span>지도 연동 예정 영역</span>
-      <span style="font-size:13px">외부 지도 API 연동 후 이 영역에 지도가 표시됩니다</span>
-    </div>
+    <div id="naver-map" style="width:100%;height:380px;border-radius:8px;overflow:hidden;"></div>
     <p class="location-address">
       📍 <strong>주소 :</strong> 경기도 화성시 봉담읍 동화길51, 6층 669호
     </p>
@@ -196,6 +191,41 @@
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Naver Maps – 경기도 화성시 봉담읍 동화길51
+  var COMPANY_LAT = 37.2068;
+  var COMPANY_LNG = 126.9754;
+
+  var map = new naver.maps.Map('naver-map', {
+    center: new naver.maps.LatLng(COMPANY_LAT, COMPANY_LNG),
+    zoom: 17,
+    mapTypeId: naver.maps.MapTypeId.NORMAL
+  });
+
+  var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(COMPANY_LAT, COMPANY_LNG),
+    map: map
+  });
+
+  var infoWindow = new naver.maps.InfoWindow({
+    content: [
+      '<div style="padding:12px 16px;font-size:13px;line-height:1.7;',
+      'font-family:\'Malgun Gothic\',\'맑은 고딕\',sans-serif;min-width:180px;">',
+      '<strong style="font-size:14px;">㈜온스펙</strong><br>',
+      '경기도 화성시 봉담읍 동화길51<br>6층 669호',
+      '</div>'
+    ].join('')
+  });
+
+  infoWindow.open(map, marker);
+
+  naver.maps.Event.addListener(marker, 'click', function () {
+    if (infoWindow.getMap()) {
+      infoWindow.close();
+    } else {
+      infoWindow.open(map, marker);
+    }
+  });
 </script>
 
 </body>

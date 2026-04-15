@@ -70,7 +70,7 @@ img { max-width: 100%; display: block; }
 .main-nav {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .main-nav > ul {
   list-style: none;

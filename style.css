@@ -172,10 +172,20 @@ img { max-width: 100%; display: block; }
 }
 .mobile-sub li a {
   display: block;
-  padding: 12px 48px;
-  color: rgba(255,255,255,0.72);
+  padding: 13px 48px;
+  color: var(--text-mid);
+  background: var(--bg-white);
   font-size: 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+.mobile-sub li a:hover,
+.mobile-sub li a.active {
+  color: var(--accent);
+  background: var(--bg-alt);
+  border-left-color: var(--accent);
 }
 
 /* ── Page body offset ───────────────────────────────────── */

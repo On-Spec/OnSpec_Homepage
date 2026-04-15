@@ -249,6 +249,13 @@ window.addEventListener('load', function () {
             var infoContent = '<div style="padding:8px 12px;font-size:13px;font-family:sans-serif;">㈜온스펙</div>';
             var infowindow = new kakao.maps.InfoWindow({ content: infoContent });
             infowindow.open(map, marker);
+
+            kakao.maps.event.addListener(marker, 'click', function () {
+                if (confirm('큰 지도로 보시겠습니까?')) {
+                    var kakaoMapUrl = 'https://map.kakao.com/link/map/㈜온스펙,' + coords.getLat() + ',' + coords.getLng();
+                    window.open(kakaoMapUrl, '_blank');
+                }
+            });
         }
     });
 });

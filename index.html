@@ -125,6 +125,14 @@
     mobileNav.classList.toggle('open');
     menuToggle.classList.toggle('open');
   });
+
+  /* Close mobile nav when any nav link is tapped (same-page anchors) */
+  mobileNav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      menuToggle.classList.remove('open');
+    });
+  });
 </script>
 
 </body>

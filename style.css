@@ -555,12 +555,16 @@ img { max-width: 100%; display: block; }
   .profile-intro { font-size: 14px; padding: 16px 18px; }
   .profile-info-row { flex-direction: column; gap: 3px; }
 
-  .org-branches { flex-wrap: wrap; gap: 0; }
-  .org-branch { flex: 0 0 50%; max-width: 50%; padding-top: 28px; }
-  /* Reset connectors for wrapped layout */
-  .org-branch::before { display: none; }
-  .org-branch::after  { display: none; }
-  .org-box { padding: 9px 12px; font-size: 13px; }
+  /* Org Chart – keep single-row tree, scale down for mobile */
+  .org-chart { overflow-x: auto; align-items: flex-start; padding: 16px 0; }
+  .org-chart > * { min-width: max-content; margin: 0 auto; }
+  .org-root { padding-bottom: 24px; }
+  .org-root::after { height: 24px; }
+  .org-root-box { padding: 10px 22px; font-size: 14px; }
+  .org-branches { max-width: none; }
+  .org-branch { padding-top: 24px; }
+  .org-branch::after { height: 24px; }
+  .org-box { padding: 8px 11px; font-size: 12px; }
 
   #map-container { height: 300px; }
 
